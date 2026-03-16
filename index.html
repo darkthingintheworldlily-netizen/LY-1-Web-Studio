@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="google-site-verification" content="sm_MZCveEVHJEkZq-ezrNqaqjzChRLyPCPZ34hoa4Eo" />
+<title>LY-1 Web Studio | Professional Website Development</title>
 
-<title>LY-1 Web Studio</title>
+<meta name="description" content="LY-1 Web Studio provides professional website development services including Basic, Business and 3D websites.">
+<meta name="keywords" content="LY-1 Web Studio, web development, website design, 3D website, business website">
+<meta name="robots" content="index, follow">
+<meta name="author" content="LY-1 Web Studio">
+
+<meta name="google-site-verification" content="sm_MZCveEVHJEkZq-ezrNqaqjzChRLyPCPZ34hoa4Eo" />
 
 <style>
 body{
@@ -161,8 +166,6 @@ alpha:true
 
 renderer.setSize(window.innerWidth,window.innerHeight)
 
-/* particles */
-
 const geometry=new THREE.BufferGeometry()
 const vertices=[]
 
@@ -190,8 +193,6 @@ const stars=new THREE.Points(geometry,material)
 
 scene.add(stars)
 
-/* 3D globe */
-
 const globeGeometry=new THREE.SphereGeometry(2,64,64)
 
 const globeMaterial=new THREE.MeshStandardMaterial({
@@ -203,8 +204,6 @@ const globe=new THREE.Mesh(globeGeometry,globeMaterial)
 
 scene.add(globe)
 
-/* light */
-
 const light=new THREE.PointLight(0x38bdf8,2)
 
 light.position.set(5,5,5)
@@ -212,8 +211,6 @@ light.position.set(5,5,5)
 scene.add(light)
 
 camera.position.z=7
-
-/* mouse move */
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -224,8 +221,6 @@ globe.rotation.y=x*2
 globe.rotation.x=y*1.5
 
 })
-
-/* animation */
 
 function animate(){
 
@@ -245,4 +240,3 @@ animate()
 
 </body>
 </html>
-
