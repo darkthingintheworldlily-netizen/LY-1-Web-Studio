@@ -1,0 +1,246 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LY-1 Web Studio</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+header{
+text-align:center;
+font-size:48px;
+padding:40px;
+color:#38bdf8;
+text-shadow:0 0 20px #38bdf8;
+}
+
+#threeCanvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+.section{
+padding:120px 40px;
+text-align:center;
+}
+
+.services{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+}
+
+.card{
+background:rgba(15,23,42,0.6);
+backdrop-filter:blur(10px);
+border:1px solid rgba(56,189,248,0.4);
+width:280px;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 0 20px rgba(56,189,248,0.4);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 0 40px #38bdf8;
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+}
+
+.price{
+color:#22c55e;
+font-size:22px;
+font-weight:bold;
+}
+
+button{
+background:#38bdf8;
+border:none;
+padding:12px 22px;
+border-radius:25px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#0ea5e9;
+box-shadow:0 0 20px #38bdf8;
+}
+</style>
+</head>
+
+<body>
+
+<header>LY-1 Web Studio</header>
+
+<canvas id="threeCanvas"></canvas>
+
+<div class="section">
+
+<h2>Professional Websites</h2>
+
+<div class="services">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
+<h3>Basic Website</h3>
+<p class="price">₹3000</p>
+<p>₹500 Advance</p>
+
+<a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%20Basic%20Website" target="_blank">
+<button>Order</button>
+</a>
+
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d">
+<h3>Business Website</h3>
+<p class="price">₹6000</p>
+<p>₹500 Advance</p>
+
+<a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%20Business%20Website" target="_blank">
+<button>Order</button>
+</a>
+
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1639762681057-408e52192e55">
+<h3>3D Website</h3>
+<p class="price">₹10000</p>
+<p>₹500 Advance</p>
+
+<a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%203D%20Website" target="_blank">
+<button>Order</button>
+</a>
+
+</div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+
+const scene=new THREE.Scene()
+
+const camera=new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+)
+
+const renderer=new THREE.WebGLRenderer({
+canvas:document.getElementById("threeCanvas"),
+alpha:true
+})
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+/* particles */
+
+const geometry=new THREE.BufferGeometry()
+const vertices=[]
+
+for(let i=0;i<3000;i++){
+
+vertices.push(
+THREE.MathUtils.randFloatSpread(200),
+THREE.MathUtils.randFloatSpread(200),
+THREE.MathUtils.randFloatSpread(200)
+)
+
+}
+
+geometry.setAttribute(
+'position',
+new THREE.Float32BufferAttribute(vertices,3)
+)
+
+const material=new THREE.PointsMaterial({
+color:0x38bdf8,
+size:0.6
+})
+
+const stars=new THREE.Points(geometry,material)
+
+scene.add(stars)
+
+/* 3D globe */
+
+const globeGeometry=new THREE.SphereGeometry(2,64,64)
+
+const globeMaterial=new THREE.MeshStandardMaterial({
+color:0x0ea5e9,
+wireframe:true
+})
+
+const globe=new THREE.Mesh(globeGeometry,globeMaterial)
+
+scene.add(globe)
+
+/* light */
+
+const light=new THREE.PointLight(0x38bdf8,2)
+
+light.position.set(5,5,5)
+
+scene.add(light)
+
+camera.position.z=7
+
+/* mouse move */
+
+document.addEventListener("mousemove",(e)=>{
+
+let x=(e.clientX/window.innerWidth)-0.5
+let y=(e.clientY/window.innerHeight)-0.5
+
+globe.rotation.y=x*2
+globe.rotation.x=y*1.5
+
+})
+
+/* animation */
+
+function animate(){
+
+requestAnimationFrame(animate)
+
+stars.rotation.y+=0.0004
+
+globe.rotation.y+=0.002
+
+renderer.render(scene,camera)
+
+}
+
+animate()
+
+</script>
+
+</body>
+</html>
+
