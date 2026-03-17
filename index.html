@@ -13,6 +13,15 @@
 
 <meta name="google-site-verification" content="sm_MZCveEVHJEkZq-ezrNqaqjzChRLyPCPZ34hoa4Eo" />
 
+<!-- ✅ TAB LOGO FIX -->
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="shortcut icon" href="logo.png" type="image/png">
+
+<!-- SEO IMAGE -->
+<meta property="og:image" content="https://lywebstudio.netlify.app/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lywebstudio.netlify.app/logo.png">
+
 <style>
 body{
 margin:0;
@@ -116,7 +125,6 @@ box-shadow:0 0 20px #38bdf8;
 <a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%20Basic%20Website" target="_blank">
 <button>Order</button>
 </a>
-
 </div>
 
 <div class="card">
@@ -128,7 +136,6 @@ box-shadow:0 0 20px #38bdf8;
 <a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%20Business%20Website" target="_blank">
 <button>Order</button>
 </a>
-
 </div>
 
 <div class="card">
@@ -140,7 +147,6 @@ box-shadow:0 0 20px #38bdf8;
 <a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%203D%20Website" target="_blank">
 <button>Order</button>
 </a>
-
 </div>
 
 </div>
@@ -170,13 +176,11 @@ const geometry=new THREE.BufferGeometry()
 const vertices=[]
 
 for(let i=0;i<3000;i++){
-
 vertices.push(
 THREE.MathUtils.randFloatSpread(200),
 THREE.MathUtils.randFloatSpread(200),
 THREE.MathUtils.randFloatSpread(200)
 )
-
 }
 
 geometry.setAttribute(
@@ -190,7 +194,6 @@ size:0.6
 })
 
 const stars=new THREE.Points(geometry,material)
-
 scene.add(stars)
 
 const globeGeometry=new THREE.SphereGeometry(2,64,64)
@@ -201,37 +204,26 @@ wireframe:true
 })
 
 const globe=new THREE.Mesh(globeGeometry,globeMaterial)
-
 scene.add(globe)
 
 const light=new THREE.PointLight(0x38bdf8,2)
-
 light.position.set(5,5,5)
-
 scene.add(light)
 
 camera.position.z=7
 
 document.addEventListener("mousemove",(e)=>{
-
 let x=(e.clientX/window.innerWidth)-0.5
 let y=(e.clientY/window.innerHeight)-0.5
-
 globe.rotation.y=x*2
 globe.rotation.x=y*1.5
-
 })
 
 function animate(){
-
 requestAnimationFrame(animate)
-
 stars.rotation.y+=0.0004
-
 globe.rotation.y+=0.002
-
 renderer.render(scene,camera)
-
 }
 
 animate()
