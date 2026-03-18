@@ -13,14 +13,26 @@
 
 <meta name="google-site-verification" content="sm_MZCveEVHJEkZq-ezrNqaqjzChRLyPCPZ34hoa4Eo" />
 
-<!-- ✅ TAB LOGO FIX -->
+<!-- 🔥 GOOGLE SITE NAME FIX -->
+<meta property="og:site_name" content="LY-1 Web Studio">
+<meta name="application-name" content="LY-1 Web Studio">
+
+<!-- 🔥 LOGO (FAVICON) -->
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="shortcut icon" href="logo.png" type="image/png">
 
-<!-- SEO IMAGE -->
+<!-- 🔥 GOOGLE IMAGE -->
 <meta property="og:image" content="https://lywebstudio.netlify.app/logo.png">
+<meta property="og:title" content="LY-1 Web Studio">
+<meta property="og:description" content="Professional Website Development Services">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lywebstudio.netlify.app/">
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lywebstudio.netlify.app/logo.png">
+
+<!-- 🔥 CANONICAL -->
+<link rel="canonical" href="https://lywebstudio.netlify.app/">
 
 <style>
 body{
@@ -183,10 +195,7 @@ THREE.MathUtils.randFloatSpread(200)
 )
 }
 
-geometry.setAttribute(
-'position',
-new THREE.Float32BufferAttribute(vertices,3)
-)
+geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3))
 
 const material=new THREE.PointsMaterial({
 color:0x38bdf8,
