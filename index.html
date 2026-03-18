@@ -7,32 +7,8 @@
 <title>LY-1 Web Studio | Professional Website Development</title>
 
 <meta name="description" content="LY-1 Web Studio provides professional website development services including Basic, Business and 3D websites.">
-<meta name="keywords" content="LY-1 Web Studio, web development, website design, 3D website, business website">
-<meta name="robots" content="index, follow">
-<meta name="author" content="LY-1 Web Studio">
 
-<meta name="google-site-verification" content="sm_MZCveEVHJEkZq-ezrNqaqjzChRLyPCPZ34hoa4Eo" />
-
-<!-- 🔥 GOOGLE SITE NAME FIX -->
-<meta property="og:site_name" content="LY-1 Web Studio">
-<meta name="application-name" content="LY-1 Web Studio">
-
-<!-- 🔥 LOGO (FAVICON) -->
-<link rel="icon" href="logo.png" type="image/png">
-<link rel="shortcut icon" href="logo.png" type="image/png">
-
-<!-- 🔥 GOOGLE IMAGE -->
-<meta property="og:image" content="https://lywebstudio.netlify.app/logo.png">
-<meta property="og:title" content="LY-1 Web Studio">
-<meta property="og:description" content="Professional Website Development Services">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://lywebstudio.netlify.app/">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lywebstudio.netlify.app/logo.png">
-
-<!-- 🔥 CANONICAL -->
-<link rel="canonical" href="https://lywebstudio.netlify.app/">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -43,12 +19,23 @@ color:white;
 overflow-x:hidden;
 }
 
-header{
+/* 🔼 THODA AUR UPAR */
+#text{
+position:absolute;
+top:3%; /* 👈 FINAL MICRO FIX */
+width:100%;
 text-align:center;
-font-size:48px;
-padding:40px;
-color:#38bdf8;
-text-shadow:0 0 20px #38bdf8;
+color:#00ffff;
+font-size:50px;
+letter-spacing:6px;
+text-shadow:0 0 30px #00ffff;
+font-family:'Orbitron',sans-serif;
+z-index:10;
+}
+
+@keyframes glow {
+0%,100% { text-shadow:0 0 20px #00ffff; }
+50% { text-shadow:0 0 60px #00ffff, 0 0 100px #00ffff; }
 }
 
 #threeCanvas{
@@ -60,8 +47,9 @@ height:100%;
 z-index:-1;
 }
 
+/* 🔥 THODA AUR SPACE */
 .section{
-padding:120px 40px;
+padding:320px 40px 120px; /* 👈 MICRO INCREASE */
 text-align:center;
 }
 
@@ -118,12 +106,11 @@ box-shadow:0 0 20px #38bdf8;
 
 <body>
 
-<header>LY-1 Web Studio</header>
+<div id="text"></div>
 
 <canvas id="threeCanvas"></canvas>
 
 <div class="section">
-
 <h2>Professional Websites</h2>
 
 <div class="services">
@@ -133,7 +120,6 @@ box-shadow:0 0 20px #38bdf8;
 <h3>Basic Website</h3>
 <p class="price">₹3000</p>
 <p>₹500 Advance</p>
-
 <a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%20Basic%20Website" target="_blank">
 <button>Order</button>
 </a>
@@ -144,7 +130,6 @@ box-shadow:0 0 20px #38bdf8;
 <h3>Business Website</h3>
 <p class="price">₹6000</p>
 <p>₹500 Advance</p>
-
 <a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%20Business%20Website" target="_blank">
 <button>Order</button>
 </a>
@@ -155,7 +140,6 @@ box-shadow:0 0 20px #38bdf8;
 <h3>3D Website</h3>
 <p class="price">₹10000</p>
 <p>₹500 Advance</p>
-
 <a href="https://wa.me/917068864936?text=Hello%20I%20want%20to%20order%203D%20Website" target="_blank">
 <button>Order</button>
 </a>
@@ -164,79 +148,120 @@ box-shadow:0 0 20px #38bdf8;
 </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
 <script>
+// TEXT ANIMATION (UNCHANGED)
+const textEl=document.getElementById("text");
+const fullText="LY-1 WEB STUDIO";
+let index=0;
+let deleting=false;
 
-const scene=new THREE.Scene()
+function typeEffect(){
+if(!deleting){
+textEl.innerHTML=fullText.substring(0,index++);
+if(index>fullText.length){
+deleting=true;
+setTimeout(typeEffect,1500);
+return;
+}
+}else{
+textEl.innerHTML=fullText.substring(0,index--);
+if(index===0){
+deleting=false;
+}
+}
+setTimeout(typeEffect,deleting?60:120);
+}
+typeEffect();
 
-const camera=new THREE.PerspectiveCamera(
-75,
-window.innerWidth/window.innerHeight,
-0.1,
-1000
-)
+setInterval(()=>{
+textEl.style.animation="glow 2s ease";
+setTimeout(()=>textEl.style.animation="",2000);
+},3000);
+
+setTimeout(()=>{
+textEl.innerHTML=fullText;
+},20000);
+
+
+// 3D (UNCHANGED)
+const scene=new THREE.Scene();
+scene.fog=new THREE.Fog(0x000000,10,80);
+
+const camera=new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,0.1,1000);
+camera.position.set(0,0,30);
 
 const renderer=new THREE.WebGLRenderer({
 canvas:document.getElementById("threeCanvas"),
-alpha:true
+alpha:true,
+antialias:true
+});
+renderer.setSize(window.innerWidth,window.innerHeight);
+
+const light=new THREE.PointLight(0x00ffff,3);
+light.position.set(10,10,10);
+scene.add(light);
+
+const core=new THREE.Mesh(
+new THREE.IcosahedronGeometry(3,2),
+new THREE.MeshStandardMaterial({
+color:0x00ffff,
+emissive:0x00ffff,
+emissiveIntensity:1,
+metalness:1
 })
+);
+scene.add(core);
 
-renderer.setSize(window.innerWidth,window.innerHeight)
+const shell=new THREE.Mesh(
+new THREE.IcosahedronGeometry(5,1),
+new THREE.MeshBasicMaterial({
+color:0x00ffff,
+wireframe:true,
+transparent:true,
+opacity:0.2
+})
+);
+scene.add(shell);
 
-const geometry=new THREE.BufferGeometry()
-const vertices=[]
-
-for(let i=0;i<3000;i++){
-vertices.push(
-THREE.MathUtils.randFloatSpread(200),
-THREE.MathUtils.randFloatSpread(200),
-THREE.MathUtils.randFloatSpread(200)
-)
+const count=2500;
+const pos=new Float32Array(count*3);
+for(let i=0;i<count*3;i++){
+pos[i]=(Math.random()-0.5)*100;
 }
+const particles=new THREE.Points(
+new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(pos,3)),
+new THREE.PointsMaterial({size:0.03,color:0x00ffff})
+);
+scene.add(particles);
 
-geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3))
-
-const material=new THREE.PointsMaterial({
-color:0x38bdf8,
-size:0.6
-})
-
-const stars=new THREE.Points(geometry,material)
-scene.add(stars)
-
-const globeGeometry=new THREE.SphereGeometry(2,64,64)
-
-const globeMaterial=new THREE.MeshStandardMaterial({
-color:0x0ea5e9,
-wireframe:true
-})
-
-const globe=new THREE.Mesh(globeGeometry,globeMaterial)
-scene.add(globe)
-
-const light=new THREE.PointLight(0x38bdf8,2)
-light.position.set(5,5,5)
-scene.add(light)
-
-camera.position.z=7
-
-document.addEventListener("mousemove",(e)=>{
-let x=(e.clientX/window.innerWidth)-0.5
-let y=(e.clientY/window.innerHeight)-0.5
-globe.rotation.y=x*2
-globe.rotation.x=y*1.5
-})
+let time=0;
 
 function animate(){
-requestAnimationFrame(animate)
-stars.rotation.y+=0.0004
-globe.rotation.y+=0.002
-renderer.render(scene,camera)
+requestAnimationFrame(animate);
+time+=0.005;
+
+core.rotation.y+=0.01;
+shell.rotation.y-=0.005;
+particles.rotation.y+=0.0007;
+
+camera.position.x=Math.sin(time)*15;
+camera.position.z=Math.cos(time)*25;
+camera.position.y=Math.sin(time*0.5)*5;
+
+camera.lookAt(0,0,0);
+
+renderer.render(scene,camera);
 }
 
-animate()
+animate();
 
+window.addEventListener("resize",()=>{
+camera.aspect=window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+});
 </script>
 
 </body>
