@@ -12,94 +12,115 @@
 
 <style>
 body{
-margin:0;
-font-family:Arial;
-background:#020617;
-color:white;
-overflow-x:hidden;
+  margin:0;
+  font-family:Arial;
+  background:#020617;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* 🔼 THODA AUR UPAR */
+/* Header text */
 #text{
-position:absolute;
-top:3%; /* 👈 FINAL MICRO FIX */
-width:100%;
-text-align:center;
-color:#00ffff;
-font-size:50px;
-letter-spacing:6px;
-text-shadow:0 0 30px #00ffff;
-font-family:'Orbitron',sans-serif;
-z-index:10;
+  position:absolute;
+  top:3%;
+  width:100%;
+  text-align:center;
+  color:#00ffff;
+  font-size:50px;
+  letter-spacing:6px;
+  text-shadow:0 0 30px #00ffff;
+  font-family:'Orbitron',sans-serif;
+  z-index:10;
 }
 
 @keyframes glow {
-0%,100% { text-shadow:0 0 20px #00ffff; }
-50% { text-shadow:0 0 60px #00ffff, 0 0 100px #00ffff; }
+  0%,100% { text-shadow:0 0 20px #00ffff; }
+  50% { text-shadow:0 0 60px #00ffff, 0 0 100px #00ffff; }
 }
 
 #threeCanvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
 }
 
-/* 🔥 THODA AUR SPACE */
+/* Section spacing */
 .section{
-padding:320px 40px 120px; /* 👈 MICRO INCREASE */
-text-align:center;
+  padding:320px 40px 120px;
+  text-align:center;
 }
 
+/* Services cards */
 .services{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:40px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:40px;
 }
 
 .card{
-background:rgba(15,23,42,0.6);
-backdrop-filter:blur(10px);
-border:1px solid rgba(56,189,248,0.4);
-width:280px;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 0 20px rgba(56,189,248,0.4);
-transition:0.4s;
+  background:rgba(15,23,42,0.6);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(56,189,248,0.4);
+  width:280px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 0 20px rgba(56,189,248,0.4);
+  transition:0.4s;
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.05);
-box-shadow:0 0 40px #38bdf8;
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 0 40px #38bdf8;
 }
 
 .card img{
-width:100%;
-height:160px;
-object-fit:cover;
+  width:100%;
+  height:160px;
+  object-fit:cover;
 }
 
 .price{
-color:#22c55e;
-font-size:22px;
-font-weight:bold;
+  color:#22c55e;
+  font-size:22px;
+  font-weight:bold;
 }
 
 button{
-background:#38bdf8;
-border:none;
-padding:12px 22px;
-border-radius:25px;
-cursor:pointer;
-font-weight:bold;
+  background:#38bdf8;
+  border:none;
+  padding:12px 22px;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 button:hover{
-background:#0ea5e9;
-box-shadow:0 0 20px #38bdf8;
+  background:#0ea5e9;
+  box-shadow:0 0 20px #38bdf8;
+}
+
+/* Bottom text section */
+.footer-text{
+  background:#0f172a;
+  text-align:center;
+  padding:60px 20px;
+  color:#00ffff;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.footer-text a{
+  color:#22c55e;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.footer-text a:hover{
+  text-decoration:underline;
 }
 </style>
 </head>
@@ -146,6 +167,12 @@ box-shadow:0 0 20px #38bdf8;
 </div>
 
 </div>
+</div>
+
+<!-- Bottom professional info -->
+<div class="footer-text">
+  <p>LY-1 Web Studio is dedicated to creating professional and visually stunning websites for your business. We offer Basic, Business, and 3D websites that are responsive, fast, and eye-catching.</p>
+  <p>For inquiries and orders, contact us at <a href="mailto:ly1webstudio@gmail.com">ly1webstudio@gmail.com</a></p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
